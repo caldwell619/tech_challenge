@@ -1,0 +1,19 @@
+{
+	"name": "i-heart-challenge-api",
+	"version": "1.0.0",
+	"description": "API to serve song list for the iHeartMediaChallenge",
+	"scripts": {
+		"dev": "sh scripts/start-local-api.sh"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://caldwell8814@dev.azure.com/caldwell8814/Buy%20Now%20Alternate%20API/_git/Buy%20Now%20Alternate%20API"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {},
+	"devDependencies": {
+		"eslint": "^6.8.0"
+	}
+}

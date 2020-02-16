@@ -1,0 +1,81 @@
+Transform: "AWS::Serverless-2016-10-31"
+Globals:
+  Api:
+    TracingEnabled: true
+  Function:
+    Runtime: nodejs10.x
+    Tracing: Active
+    Timeout: 30
+Resources:
+########### Lambda ###########
+  LambdaLocalCorsStub:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/options/
+      Handler: index.handler
+      Role: !GetAtt "iHeartChallengeRole.Arn"
+      FunctionName: cors_handler_FF
+      Timeout: 30
+      Events:
+        LocalDevelopment:
+          Type: Api
+          Properties:
+            RestApiId: !Ref iHeartChallengeAPI
+            Path: /{cors+}
+            Method: OPTIONS
+
+################################################
+################## Lambdas #####################
+################################################
+
+  GetSongs:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/songs
+      Role: !GetAtt "iHeartChallengeRole.Arn"
+      FunctionName: !Sub ${STAGE}-get-songs
+      Handler: index.handler
+      Events:
+        API:
+          Type: Api
+          Properties:
+            Path: /songs
+            Method: get
+            RestApiId: !Ref iHeartChallengeAPI
+
+########### API ###########
+  iHeartChallengeAPI:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: !Sub ${API_NAME}
+      StageName: !Sub ${STAGE}
+      DefinitionBody:
+        Fn::Transform:
+          Name: "AWS::Include"
+          Parameters:
+            Location: !Sub s3://${S3_BUCKET}/swagger-api-template.json
+
+############### IAM ##############
+  iHeartChallengeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Action:
+          - sts:AssumeRole
+          Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+      Policies:
+      - PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Effect: Allow
+            Resource: '*'
+            PolicyName: !Sub ${STAGE}-iHeart-challenge-role
