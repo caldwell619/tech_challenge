@@ -1,5 +1,9 @@
 export const categoriesOfMetrics = [
   {
+    categoryText: 'Number',
+    programmaticCategory: 'number'
+  },
+  {
     categoryText: 'Song',
     programmaticCategory: 'song'
   },

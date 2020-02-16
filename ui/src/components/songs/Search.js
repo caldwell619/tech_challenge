@@ -36,7 +36,7 @@ const Search = ({ handleSearch }) => {
           {...bindSearchTerm}
         />
       </Grid>
-      <Grid item className="search-term-cta" md={3}>
+      <Grid item className="search-term-cta" md={4}>
         <Button
           type="submit"
           variant="contained"
