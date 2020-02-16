@@ -1,29 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-const ToolBar = ({classes, handleDrawerToggle}) => {
+import 'styles/header.sass'
+
+const ToolBar = () => {
   return (
-    <AppBar position="fixed" className={classes.appBar}>
-      <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          onClick={handleDrawerToggle}
-          className={classes.menuButton}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" noWrap>
-          iHeart Media Challenge
-        </Typography>
-      </Toolbar>
-    </AppBar>
+    <div className="app-bar">
+        <Grid container justify='space-between'>
+          <Grid item >    
+            <Typography variant="h6" noWrap>
+              iHeart Media Challenge
+            </Typography>
+          </Grid>
+          <Grid item >    
+            <Typography variant="h6" noWrap>
+              iHeart Media Challenge
+            </Typography>
+          </Grid>
+        </Grid>
+    </div>
   );
 };
 
