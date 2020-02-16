@@ -4,9 +4,9 @@ import Typography from '@material-ui/core/Typography'
 import SortIcon from '@material-ui/icons/ImportExport'
 
 const Category = ({ category, handleSortClick, isCurrentlySorted }) => {
-  const { categoryText, programmaticCategory } = category
+  const { categoryText } = category
   const handleClick = () => {
-    handleSortClick(programmaticCategory)
+    handleSortClick(category)
   }
   const colorOfIcon = isCurrentlySorted
     ? 'primary'
