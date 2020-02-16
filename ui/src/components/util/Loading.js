@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Spinner from "@material-ui/core/CircularProgress";
-import { LoadingContext } from "../context/LoadingContext";
+import { LoadingContext } from "context/LoadingContext";
 
 const Loading = () => (
 	<LoadingContext.Consumer>

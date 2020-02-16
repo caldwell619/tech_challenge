@@ -1,0 +1,5 @@
+.content-window {
+  margin-left: 240px;
+  width: calc(100vw - 240px);
+  margin-top: 91px;
+}

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import Router from "router/Router";
-import Loading from "components/Loading";
+import Loading from "components/util/Loading";
 import { LoadingContext } from "context/LoadingContext";
-import "./css/App.css";
+import "styles/main.css";
 
 const persistedMode = JSON.parse(window.localStorage.getItem("persistedMode"));
 
