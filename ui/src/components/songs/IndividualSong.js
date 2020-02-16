@@ -8,16 +8,14 @@ const IndividualSong = ({ song, index }) => {
     : ''
   return (
     <div className="table-row" key={`individual-song-row-${index}`}>
+      <Typography key={`individual-song-number-${index + Math.random()}`} component='div' variant='body1' className={`table-cell ${backgroundAlternateClass}`}>
+        {index + 1}
+      </Typography>
       {Object.values(song).map(dataPoint => {
         return (
-          <Fragment>
-            <Typography key={`individual-dataPoints-${dataPoint}-${index + Math.random()}`} component='div' variant='body1' className={`table-cell ${backgroundAlternateClass}`}>
-              {index + 1}
-            </Typography>
-            <Typography key={`individual-dataPoints-${dataPoint}-${index + Math.random()}`} component='div' variant='body1' className={`table-cell ${backgroundAlternateClass}`}>
-              {dataPoint}
-            </Typography>
-          </Fragment>
+          <Typography key={`individual-dataPoints-${dataPoint}-${index + Math.random()}`} component='div' variant='body1' className={`table-cell ${backgroundAlternateClass}`}>
+            {dataPoint}
+          </Typography>
         )
       })}
     </div>
