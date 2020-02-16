@@ -7,10 +7,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-import Toggle from "components/input/Toggle";
+import Toggle from "components/util/Toggle";
 import PartialDrawer from "./PartialDrawer";
-import { adminRoutes, visitorRoutes, userRoutes } from "router/routes";
-import "css/Header.css";
+import routes from "router/routes";
 
 const drawerWidth = 240;
 
@@ -43,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const Header = ({ container, setThemeMode, currentTheme, user }) => {
+const Header = ({ setThemeMode, currentTheme }) => {
 	const [modeChecked, setModeChecked] = useState(false);
 	
 	const handleChange = event => {
@@ -96,9 +95,7 @@ const Header = ({ container, setThemeMode, currentTheme, user }) => {
 
 Header.propTypes = {
 	setThemeMode: PropTypes.func,
-	currentTheme: PropTypes.string,
-	user: PropTypes.object,
-	container: PropTypes.any
+	currentTheme: PropTypes.string
 };
 
 export default Header;

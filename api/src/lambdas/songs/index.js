@@ -5,10 +5,13 @@ const corsURL = process.env.CORS_URL
 const headers = createHeaders(corsURL)
 
 
-exports.handler = async () => {
+exports.handler = async event => {
+  const { pageNumber, numberOfResultsPerPage } = event.queryStringParameters
+  
   try {
+
     return {
-      body: JSON.stringify(songsToSend),
+      body: JSON.stringify(),
       headers,
       statusCode: 200
     }

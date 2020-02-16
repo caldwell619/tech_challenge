@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
-import Header from 'components/header/AppBar'
+import Header from 'components/header/Header'
 import Main from 'views/Main'
 import Songs from 'views/standard/Songs'
 
 const Router = props => {
 	return (
 		<Fragment>
-			<Header />
+			<Header {...props}/>
 			<main className="main">
 				<Switch>
 					<Route path="/songs" component={Songs} />
