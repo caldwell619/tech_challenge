@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 
 const DropDown = props => {
 	const { 
-		title, options, update, value, marginType } = props;
+		title, options, update, value } = props;
 	const updateValue = event => {
 		update(event.target.value);
 	};
@@ -16,7 +16,6 @@ const DropDown = props => {
 			label={title}
 			onChange={updateValue}
 			value={value}
-			margin={marginType || ""}
 			variant="outlined"
 		>
 			{options.map(option => (
@@ -33,7 +32,7 @@ DropDown.propTypes = {
 	title: PropTypes.string,
 	options: PropTypes.array,
 	update: PropTypes.func,
-	value: PropTypes.string,
+	value: PropTypes.any,
 	marginType: PropTypes.string,
 };
 
