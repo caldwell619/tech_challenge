@@ -1,0 +1,6 @@
+{
+  "queryStringParameters": {
+    "numberOfItemsPerPage": 5,
+    "currentPage":  1
+  }
+}

@@ -3,7 +3,9 @@
 	"version": "1.0.0",
 	"description": "API to serve song list for the iHeartMediaChallenge",
 	"scripts": {
-		"dev": "sh scripts/start-local-api.sh"
+		"dev": "sh scripts/start-local-api.sh",
+		"test:unit": "jest tests/unit",
+		"test:integration": "jest tests/integration"
 	},
 	"repository": {
 		"type": "git",
@@ -14,6 +16,9 @@
 	"license": "ISC",
 	"dependencies": {},
 	"devDependencies": {
-		"eslint": "^6.8.0"
+		"babel-jest": "^25.1.0",
+		"eslint": "^6.8.0",
+		"jest": "^25.1.0",
+		"lodash.isequal": "^4.5.0"
 	}
 }
