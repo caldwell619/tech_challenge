@@ -31,7 +31,7 @@ Resources:
   GetSongs:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/lambdas/songs
+      CodeUri: src/lambdas/songs/standard
       Role: !GetAtt "iHeartChallengeRole.Arn"
       FunctionName: !Sub ${STAGE}-get-songs
       Handler: index.handler
@@ -40,6 +40,21 @@ Resources:
           Type: Api
           Properties:
             Path: /songs
+            Method: get
+            RestApiId: !Ref iHeartChallengeAPI
+
+  GetSongsExtra:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/lambdas/songs/extra
+      Role: !GetAtt "iHeartChallengeRole.Arn"
+      FunctionName: !Sub ${STAGE}-get-songs-extra
+      Handler: index.handler
+      Events:
+        API:
+          Type: Api
+          Properties:
+            Path: /songs/extra
             Method: get
             RestApiId: !Ref iHeartChallengeAPI
 

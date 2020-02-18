@@ -1,0 +1,9 @@
+{
+  "name": "get-songs-with-pagination",
+  "version": "1.0.0",
+  "description": "Sending a list of songs with pagination",
+  "main": "index.js",
+  "author": "Christopher Caldwell",
+  "license": "ISC",
+  "dependencies": {}
+}
