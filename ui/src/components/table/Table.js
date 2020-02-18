@@ -7,7 +7,7 @@ const Table = props => {
   const { headers, itemsToDisplay, headersHaveSorting, 
     currentlySortedCategory, handleSortClickAscending, handleSortClickDescending, textWhenNoItemsPresent } = props
   let tableItems = ( <div>{textWhenNoItemsPresent}</div> )
-  if(true){
+  if(itemsToDisplay.length){
     tableItems = itemsToDisplay.map((item, index) => (
       <TableItem item={item} index={index} key={`item-data-${Math.random()}-${index}`}/>)
     )
@@ -35,7 +35,7 @@ Table.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.object),
   itemsToDisplay: PropTypes.arrayOf(PropTypes.object),
   headersHaveSorting: PropTypes.bool,
-  currentlySortedCategory: PropTypes.string,
+  currentlySortedCategory: PropTypes.object,
   handleSortClickAscending: PropTypes.func,
   handleSortClickDescending: PropTypes.func,
   textWhenNoItemsPresent: PropTypes.string,
