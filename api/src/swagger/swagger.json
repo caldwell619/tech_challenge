@@ -45,6 +45,7 @@
 		},
 		"/songs/extra": {
 			"get": {
+				"x-amazon-apigateway-request-validator": "QueryString",
 				"responses": {
 					"200": {
 						"description": "Valid Response",
@@ -71,6 +72,16 @@
 						}
 					}
 				},
+				"parameters": [
+          {
+            "in": "query",
+            "name": "PaginationSong",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PaginationSong"
+            }
+          }
+        ],
 				"x-amazon-apigateway-integration": {
 					"uri": {
 						"Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GetSongsExtra.Arn}/invocations"
@@ -81,5 +92,21 @@
 				}
 			}
 		}
-	}
+	},
+	"x-amazon-apigateway-request-validators": {
+    "QueryString": {
+      "validateRequestParameters": true,
+      "validateRequestBody": false
+    }
+	},
+	"definitions": {
+    "PaginationSong": {
+      "type": "object",
+      "properties": {
+        "numberOfItemsPerPage": { "type": "integer" },
+        "currentPage": { "type": "integer" }
+      },
+      "required": ["numberOfItemsPerPage", "currentPage"]
+    }
+  }
 }
