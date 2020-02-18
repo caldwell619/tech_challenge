@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -19,13 +19,16 @@ const useStyles = makeStyles(theme => ({
 const Search = ({ handleSearch }) => {
   const classes = useStyles();
 
-  const { value: searchTerm, bind: bindSearchTerm } = useInput("");
+  const [ searchTerm, setSearchTerm ] = useState('')
+  // const { value: searchTerm, bind: bindSearchTerm } = useInput("");
 
   const handleSubmit = event => {
     event.preventDefault();
-    handleSearch(searchTerm)
-    
+    const incomingSearchTerm = event.target.value
+    setSearchTerm(incomingSearchTerm)
+    handleSearch(incomingSearchTerm)
   }
+
   return (
     <Grid container component='form' justify='space-between' alignItems='center' noValidate>
       <Grid item className="search-term-cont" md={7}>
@@ -33,7 +36,8 @@ const Search = ({ handleSearch }) => {
           fullWidth
           variant="outlined"
           label="Search"
-          {...bindSearchTerm}
+          value={searchTerm}
+          onChange={handleSubmit}
         />
       </Grid>
       <Grid item className="search-term-cta" md={4}>

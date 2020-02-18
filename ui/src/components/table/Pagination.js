@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
+import Dropdown from 'components/util/Dropdown'
+import { allowableItemsPerPageValues } from 'data/constants'
 
 const singleUpArgument = 'increase single'
 const singleDownArgument = 'decrease single'
@@ -15,22 +17,25 @@ const createModifierEnum = (numberOfPages, currentPage) => ({
 })
 
 const Pagination = props => {
-  const { pageUpdateHandler, numberOfPages, numberOfItemsPerPage, setNumberOfItemsPerPage } = props
-  const [ currentPage, setCurrentPage ] = useState(1)
+  const { currentPage, pageUpdateHandler, numberOfPages, numberOfItemsPerPage, setNumberOfItemsPerPage } = props
   
   const alterPageNumber = modifier => {
     const modifierEnum = createModifierEnum(numberOfPages, currentPage)
     const pageToGoTo = modifierEnum[modifier]
-    setCurrentPage(pageToGoTo)
     pageUpdateHandler(pageToGoTo, numberOfItemsPerPage)
   }
+
+  const numberOfItemsPerPageHandler = newNumberOfPages => {
+    setNumberOfItemsPerPage(newNumberOfPages)
+  }
+
   const isPreviousDisabled = currentPage === 1
   const isNextDisabled = currentPage === numberOfPages
 
   return (
     <Grid container justify='flex-end'>
-      <Grid item md={6}>
-        <Grid container>
+      <Grid item md={8}>
+        <Grid container justify='flex-end'>
           <Grid item md={2} justify="center" container>
             <Button disabled={isPreviousDisabled} onClick={() => alterPageNumber(firstPageArgument)}>
               First
@@ -53,6 +58,14 @@ const Pagination = props => {
             <Button disabled={isNextDisabled} onClick={() => alterPageNumber(lastPageArgument)}>
               Last
             </Button>
+          </Grid>
+          <Grid item md={2} alignItems="center" justify="center" container>
+            <Dropdown
+              options={allowableItemsPerPageValues}
+              title='Items per page'
+              update={numberOfItemsPerPageHandler}
+              value={numberOfItemsPerPage}
+            />
           </Grid>
         </Grid>
       </Grid>

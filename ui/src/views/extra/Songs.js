@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import client from 'client'
 import LocalLoading from 'components/util/LocalLoading'
 import Table from 'components/table/Table'
 import TableDisplay from 'components/table/DisplayInformation'
-import client from 'client'
 import Pagination from 'components/table/Pagination'
 import { categoriesOfMetrics } from 'data/songsMetaData'
 import { filterSongs } from 'util/searchThroughObjects'
@@ -19,6 +19,7 @@ const Songs = () => {
   const [currentSortCategory, setCurrentSortCategory] = useState({})
   const [numberOfItemsPerPage, setNumberOfItemsPerPage] = useState(10)
   const [numberOfSongs, setNumberOfSongs] = useState(0)
+  const [ currentPage, setCurrentPage ] = useState(1)
   const numberOfPages = Math.round(numberOfSongs / numberOfItemsPerPage)
   
 
@@ -27,11 +28,11 @@ const Songs = () => {
     setAvailableSongs(filteredSongs)
   }
 
-  const fetchSongs = async pageNumber => {
+  const fetchSongs = async (pageNumber, itemsPerPage) => {
     setIsLoading(true)
     const { data } = await client.get('/songs/extra', {
       params: {
-        numberOfItemsPerPage,
+        numberOfItemsPerPage: itemsPerPage,
         currentPage: pageNumber
       }
     })
@@ -41,15 +42,23 @@ const Songs = () => {
     setIsLoading(false)
   }
 
+  const updateNumberOfItemsPerPageHandler = async newNumberOfItems => {
+    // changing the number of songs per page brings it back down to one
+    setCurrentPage(1)
+    setNumberOfItemsPerPage(newNumberOfItems)
+    await fetchSongs(1, newNumberOfItems)
+  }
+
   const pageUpdateHandler = async updatedPageNumber => {
-    await fetchSongs(updatedPageNumber)
+    await fetchSongs(updatedPageNumber, numberOfItemsPerPage)
+    setCurrentPage(updatedPageNumber)
     console.log('page number', updatedPageNumber)
   }
 
   useEffect(() => {
     const initializeSongs = async () => {
       try {
-        await fetchSongs(1)
+        await fetchSongs(1, numberOfItemsPerPage)
       } catch(error){
         setIsLoading(false)
         console.error(error)
@@ -98,7 +107,8 @@ const Songs = () => {
         pageUpdateHandler={pageUpdateHandler} 
         numberOfPages={numberOfPages}
         numberOfItemsPerPage={numberOfItemsPerPage}
-        setNumberOfItemsPerPage={setNumberOfItemsPerPage}
+        setNumberOfItemsPerPage={updateNumberOfItemsPerPageHandler}
+        currentPage={currentPage}
       />
     </div>
   );
