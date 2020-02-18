@@ -59,7 +59,7 @@ DisplayInformation.propTypes = {
   numOfResults: PropTypes.number,
   handleSearch: PropTypes.func,
   hasSorting: PropTypes.bool,
-  currentlySortedCategory: PropTypes.string,
+  currentlySortedCategory: PropTypes.object,
 };
 
 export default DisplayInformation;
