@@ -1,3 +1,5 @@
+const isRunningLocally = process.env.NODE_ENV !== 'production'
+
 module.exports = {
 	root: true,
 	env: {
@@ -6,7 +8,7 @@ module.exports = {
 	},
 	extends: ['eslint:recommended'],
 	rules: {
-    'no-console': 'off',
+    'no-console': isRunningLocally ? 'off' : 'error',
     // always use single quotes
     quotes: [2, 'single', { avoidEscape: true }],
     // errors when semi colon are used to close
