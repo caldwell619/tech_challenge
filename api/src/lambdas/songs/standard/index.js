@@ -1,6 +1,11 @@
 const songsToSend = require('./lib/songs.json')
 const { createHeaders } = require('./lib/helpers')
-const corsURL = process.env.CORS_URL
+
+let corsURL = '*'
+if(!process.env.AWS_SAM_LOCAL){
+  corsURL = process.env.CORS_URL
+} 
+
 const headers = createHeaders(corsURL)
 
 // standard response handler, just send the entire json array of songs
