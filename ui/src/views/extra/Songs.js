@@ -42,30 +42,26 @@ const Songs = () => {
     setIsLoading(false)
   }
 
-  const updateNumberOfItemsPerPageHandler = async newNumberOfItems => {
+  const updateNumberOfItemsPerPageHandler = newNumberOfItems => {
     // changing the number of songs per page brings it back down to one
     setCurrentPage(1)
     setNumberOfItemsPerPage(newNumberOfItems)
-    await fetchSongs(1, newNumberOfItems)
   }
 
-  const pageUpdateHandler = async updatedPageNumber => {
-    await fetchSongs(updatedPageNumber, numberOfItemsPerPage)
+  const pageUpdateHandler = updatedPageNumber => {
     setCurrentPage(updatedPageNumber)
-    console.log('page number', updatedPageNumber)
   }
 
   useEffect(() => {
     const initializeSongs = async () => {
       try {
-        await fetchSongs(1, numberOfItemsPerPage)
+        await fetchSongs(currentPage, numberOfItemsPerPage)
       } catch(error){
         setIsLoading(false)
-        console.error(error)
       }
     }
     initializeSongs()
-  })
+  }, [currentPage, numberOfItemsPerPage])
 
   const handleSortClickAscending = ({ programmaticCategory, categoryText }) => {
     const sortedSongsByCategory = primitiveSort(availableSongs, true, programmaticCategory)
@@ -78,11 +74,9 @@ const Songs = () => {
     setAvailableSongs(sortedSongsByCategory)
     setCurrentSortCategory({ programmaticCategory, categoryText, isAscendingOrder: false })
   }
-  console.log('num of pages', numberOfPages)
-
   return (
     <div>
-      <div>**Same table, but with searching and pagination done server side</div>
+      <div>**Same table, but with searching and pagination done server side. <br/> Changing pages or number of items per pages removes current search</div>
       <LocalLoading isLoading={isLoading}/>
       <TableDisplay 
         hasSearch={true} 
