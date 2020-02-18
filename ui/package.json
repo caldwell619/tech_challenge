@@ -21,7 +21,7 @@
   "scripts": {
     "start": "source .env.local && react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test src/tests/main",
     "seed-test-values": "react-scripts test src/tests/seed"
   },
   "eslintConfig": {
