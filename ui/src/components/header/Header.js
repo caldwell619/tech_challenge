@@ -51,7 +51,7 @@ const Header = ({ setThemeMode, currentTheme }) => {
 								</Typography>
 							</Grid>
 							<Grid item md={8} container>
-								<Grid item md={4} justify="center" alignItems="center">
+								<Grid item md={4} container justify="center" alignItems="center">
 									<Toggle
 										modeChecked={modeChecked}
 										handleChange={handleChange}
