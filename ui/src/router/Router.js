@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Header from 'components/header/Header'
 import Main from 'views/Main'
 import Songs from 'views/standard/Songs'
+import ExtraSongs from 'views/extra/Songs'
 
 const Router = props => {
 	return (
@@ -10,6 +11,7 @@ const Router = props => {
 			<Header {...props}/>
 			<main className="main">
 				<Switch>
+					<Route path="/extra/songs" component={ExtraSongs} />
 					<Route path="/songs" component={Songs} />
 					<Route path="/" component={Main} />
 				</Switch>

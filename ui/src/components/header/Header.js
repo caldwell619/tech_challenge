@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
+import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
+
 import Toggle from "components/util/Toggle";
-import PartialDrawer from "./PartialDrawer";
-import routes from "router/routes";
 
 const drawerWidth = 240;
 
@@ -17,29 +15,9 @@ const useStyles = makeStyles(theme => ({
 	root: {
 		display: "flex"
 	},
-	drawer: {
-		[theme.breakpoints.up("md")]: {
-			flexShrink: 0,
-			width: drawerWidth
-		}
-	},
 	appBar: {
 		zIndex: theme.zIndex.drawer + 1
 	},
-	menuButton: {
-		marginRight: theme.spacing(2),
-		[theme.breakpoints.up("md")]: {
-			display: "none"
-		}
-	},
-	toolbar: theme.mixins.toolbar,
-	drawerPaper: {
-		width: drawerWidth
-	},
-	content: {
-		flexGrow: 1,
-		padding: theme.spacing(3)
-	}
 }));
 
 const Header = ({ setThemeMode, currentTheme }) => {
@@ -60,36 +38,30 @@ const Header = ({ setThemeMode, currentTheme }) => {
 	}, [currentTheme, preselectedMode]);
 
 	return (
-		<div className={classes.root}>
-			<CssBaseline />
-			<AppBar position="fixed" className={classes.appBar}>
-				<Toolbar>
-          <Typography variant="h6" noWrap>
-            iHeart Media Challenge
-          </Typography>
-				</Toolbar>
-			</AppBar>
-			<nav className={classes.drawer}>
-				<Hidden smDown implementation="css">
-					<Drawer
-						classes={{
-							paper: classes.drawerPaper
-						}}
-						variant="permanent"
-						open
-					>
-						<PartialDrawer routes={routes} toolbar={classes.toolbar} />
-						<div className="bottom-div">
-							<Toggle
-								modeChecked={modeChecked}
-								handleChange={handleChange}
-								textPrompt={"Dark Mode"}
-							/>
-						</div>
-					</Drawer>
-				</Hidden>
-			</nav>
-		</div>
+			<div className={classes.root}>
+				<CssBaseline />
+				<AppBar position="fixed" className={classes.appBar}>
+					<Toolbar>
+						<Grid container spacing={2}>
+							<Grid item md={4}>
+								<Typography variant="h6" noWrap>
+									iHeart Media Challenge
+								</Typography>
+							</Grid>
+							<Grid item>
+								<Toggle
+									modeChecked={modeChecked}
+									handleChange={handleChange}
+									textPrompt={"Dark Mode"}
+								/>
+							</Grid>
+							<Grid item>
+								{/* Put links to standard table here */}
+							</Grid>
+						</Grid>
+					</Toolbar>
+				</AppBar>
+			</div>
 	);
 };
 

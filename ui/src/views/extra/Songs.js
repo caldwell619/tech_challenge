@@ -4,6 +4,7 @@ import Table from 'components/table/Table'
 import TableDisplay from 'components/table/DisplayInformation'
 import primitiveSort from 'util/sortPrimitives'
 import client from 'client'
+import Pagination from 'components/table/Pagination'
 import { categoriesOfMetrics } from 'data/songsMetaData'
 
 // uncomment for local testing without fetching songs
@@ -46,7 +47,7 @@ const Songs = () => {
   return (
     <div>
       <LocalLoading isLoading={isLoading}/>
-      <TableDisplay header="Songs" numOfResults={numberOfSongs} hasSorting={true} currentlySortedCategory={currentSortCategory} />
+      <TableDisplay hasSearch={true} header="Songs" numOfResults={numberOfSongs} hasSorting={true} currentlySortedCategory={currentSortCategory} />
       <div className="songs-container">
         <Table
           itemsToDisplay={availableSongs}
@@ -57,6 +58,7 @@ const Songs = () => {
           headersHaveSorting={true}
         />
       </div>
+      <Pagination/>
     </div>
   );
 };

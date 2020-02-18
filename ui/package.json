@@ -6,6 +6,7 @@
     "@material-ui/core": "^4.9.2",
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.19.2",
+    "date-fns": "^2.9.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
@@ -15,13 +16,14 @@
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^8.1.0",
+    "babel-jest": "^25.1.0",
     "node-sass": "^4.13.1"
   },
   "scripts": {
     "start": "source .env.local && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "seed-test-values": "react-scripts test src/tests/seed"
   },
   "eslintConfig": {
     "extends": "react-app"

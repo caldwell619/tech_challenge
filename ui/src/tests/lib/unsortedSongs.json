@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Lady Killer",
+    "songReleaseDate": "01/10/900",
+    "metricA": 12
+  },
+  {
+    "name": "Lost Ones",
+    "songReleaseDate": "04/14/1900",
+    "metricA": 90
+  },
+  {
+    "name": "No Problem",
+    "songReleaseDate": "01/23/2006",
+    "metricA": 45
+  }
+  {
+    "name": "2006",
+    "songReleaseDate": "12/02/2006",
+    "metricA": 11
+  },
+  {
+    "name": "Green Light",
+    "songReleaseDate": "08/30/2001",
+    "metricA": 302
+  },
+  {
+    "name": "Middle Child",
+    "songReleaseDate": "10/30/2018",
+    "metricA": 23
+  }
+]

@@ -12,8 +12,8 @@ export default () => {
 	const [themeMode, setThemeMode] = useState(persistedMode || "light");
 	const theme = createMuiTheme({
 		palette: {
-			type: themeMode, // Switching the dark mode on is a single property value change.
-			},
+			type: themeMode,
+		}
 	});
 
 	const [isLoading, toggleLoading] = useState(false);
