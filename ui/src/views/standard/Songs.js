@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import LocalLoading from 'components/util/LocalLoading'
 import Table from 'components/table/Table'
 import TableDisplay from 'components/table/DisplayInformation'
@@ -7,9 +7,9 @@ import client from 'client'
 import { categoriesOfMetrics } from 'data/songsMetaData'
 
 // uncomment for local testing without fetching songs
-import songs from 'data/temp-songs'
+// import songs from 'data/temp-songs'
 
-// any state change on this page is very slow due to all the songs being shown. If pagination could be implemented, that would help a great deal.
+// any state change on this page is very slow due to all the songs being shown. 
 const Songs = () => {
   const [availableSongs, setAvailableSongs] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -20,8 +20,8 @@ const Songs = () => {
     const fetchSongs = async () => {
       try {
         setIsLoading(true)
-        // const { data } = await client.get('/songs')
-        setAvailableSongs(songs)
+        const { data } = await client.get('/songs')
+        setAvailableSongs(data.songs)
         setIsLoading(false)
       } catch(error){
         setIsLoading(false)

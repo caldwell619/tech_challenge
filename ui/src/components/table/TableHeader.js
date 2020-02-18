@@ -8,7 +8,9 @@ import { green } from '@material-ui/core/colors';
 
 const TableHeader = ({ category, handleSortClickAscending, handleSortClickDescending, currentlySortedCategory, headersHaveSorting }) => {
   const theme= useTheme()
-  const colorToAdd = theme.palette.action.selected
+  const colorOfHeaders = theme.palette.type === 'dark'
+    ? '#666565'
+    : '#d1d1d1'
 
   const { categoryText, programmaticCategory } = category
   const handleClick = isAscendingSortOrder => {
@@ -42,7 +44,7 @@ const TableHeader = ({ category, handleSortClickAscending, handleSortClickDescen
   }
 
   return (
-    <div className="table-cell sticky" key={`category-${category}`} style={{backgroundColor: colorToAdd}}>
+    <div className="table-cell sticky table-header-title" key={`category-${category}`} style={{backgroundColor: colorOfHeaders}}>
       <span>{categoryText}</span>
       <span style={{marginTop: '5px', marginLeft: '15px'}}>{descendingSortIcon}</span>
       <span style={{marginTop: '5px', marginLeft: '5px'}}>{ascendingSortIcon}</span>

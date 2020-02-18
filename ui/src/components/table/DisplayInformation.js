@@ -22,7 +22,9 @@ const DisplayInformation = ({ header, numOfResults, hasSearch ,handleSearch, has
           <Typography variant='h5' >Sorted By:</Typography>
         </Grid>
         <Grid item md={5}>
-    <Typography variant='h5' style={{marginLeft: '4%'}}>{currentlySortedCategory.categoryText} {orderByText}</Typography>
+          <Typography variant='h5' style={{marginLeft: '4%'}}>
+            {currentlySortedCategory.categoryText} {orderByText}
+          </Typography>
         </Grid>
       </Grid>
     )

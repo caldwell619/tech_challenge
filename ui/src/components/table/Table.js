@@ -4,7 +4,14 @@ import TableHeader from './TableHeader'
 import TableItem from './TableItem'
 
 const Table = props => {
-  const { headers, itemsToDisplay, headersHaveSorting, currentlySortedCategory, handleSortClickAscending, handleSortClickDescending } = props
+  const { headers, itemsToDisplay, headersHaveSorting, 
+    currentlySortedCategory, handleSortClickAscending, handleSortClickDescending, textWhenNoItemsPresent } = props
+  let tableItems = ( <div>{textWhenNoItemsPresent}</div> )
+  if(true){
+    tableItems = itemsToDisplay.map((item, index) => (
+      <TableItem item={item} index={index} key={`item-data-${Math.random()}-${index}`}/>)
+    )
+  }
   return (
     <div className='table'>
       <div className='table-row'>
@@ -19,9 +26,7 @@ const Table = props => {
           />
         ))}
       </div>
-        {itemsToDisplay.map((item, index) => (
-          <TableItem item={item} index={index} key={`item-data-${Math.random()}-${index}`}/>)
-        )}
+        {tableItems}
     </div>
   );
 };
@@ -33,6 +38,7 @@ Table.propTypes = {
   currentlySortedCategory: PropTypes.string,
   handleSortClickAscending: PropTypes.func,
   handleSortClickDescending: PropTypes.func,
+  textWhenNoItemsPresent: PropTypes.string,
 };
 
 export default Table;
