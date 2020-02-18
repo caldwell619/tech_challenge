@@ -1,11 +1,11 @@
 Transform: "AWS::Serverless-2016-10-31"
 Globals:
-  Api:
-    TracingEnabled: true
   Function:
     Runtime: nodejs10.x
-    Tracing: Active
     Timeout: 30
+    Environment: 
+      Variables:
+        CORS_URL: d1ma6phx3bdsds.cloudfront.net
 Resources:
 ########### Lambda ###########
   LambdaLocalCorsStub:
@@ -14,7 +14,7 @@ Resources:
       CodeUri: src/lambdas/options/
       Handler: index.handler
       Role: !GetAtt "iHeartChallengeRole.Arn"
-      FunctionName: cors_handler_FF
+      FunctionName: iHeartLocalCorsHandler
       Timeout: 30
       Events:
         LocalDevelopment:
@@ -33,7 +33,7 @@ Resources:
     Properties:
       CodeUri: src/lambdas/songs/standard
       Role: !GetAtt "iHeartChallengeRole.Arn"
-      FunctionName: !Sub ${STAGE}-get-songs
+      FunctionName: get-songs
       Handler: index.handler
       Events:
         API:
@@ -48,7 +48,7 @@ Resources:
     Properties:
       CodeUri: src/lambdas/songs/extra
       Role: !GetAtt "iHeartChallengeRole.Arn"
-      FunctionName: !Sub ${STAGE}-get-songs-extra
+      FunctionName: get-songs-extra
       Handler: index.handler
       Events:
         API:
@@ -62,13 +62,13 @@ Resources:
   iHeartChallengeAPI:
     Type: AWS::Serverless::Api
     Properties:
-      Name: !Sub ${API_NAME}
-      StageName: !Sub ${STAGE}
+      Name: iHeart-Challenge
+      StageName: dev
       DefinitionBody:
         Fn::Transform:
           Name: "AWS::Include"
           Parameters:
-            Location: !Sub s3://${S3_BUCKET}/swagger-api-template.json
+            Location: s3://i-heart-challenge-build/swagger-api-template.json
 
 ############### IAM ##############
   iHeartChallengeRole:
@@ -84,7 +84,8 @@ Resources:
             Service:
             - lambda.amazonaws.com
       Policies:
-      - PolicyDocument:
+      - PolicyName: iHeart-challenge-role
+        PolicyDocument:
           Version: '2012-10-17'
           Statement:
           - Action:
@@ -93,4 +94,4 @@ Resources:
             - logs:PutLogEvents
             Effect: Allow
             Resource: '*'
-            PolicyName: !Sub ${STAGE}-iHeart-challenge-role
+      
