@@ -1,15 +1,22 @@
 import dateSort from 'util/dateSort'
 const keyOfDateProperty = 'songReleaseDate'
 
-// type agnostic comparison
+// type agnostic comparison, upper case and lowercase are sorted differently, hence the check to lowercase them
 const ascendingOrderSort = (firstValue, secondValue) => {
+  if(typeof firstValue === 'string'){
+    firstValue = firstValue.toLowerCase()
+    secondValue = secondValue.toLowerCase()
+  }
   if (firstValue < secondValue) { return -1 }
   if (firstValue > secondValue) { return 1 }
   return 0
 }
 
-// type agnostic comparison
 const descendingOrderSort = (firstValue, secondValue) => {
+  if(typeof firstValue === 'string'){
+    firstValue = firstValue.toLowerCase()
+    secondValue = secondValue.toLowerCase()
+  }
   if (firstValue > secondValue) { return -1 }
   if (firstValue < secondValue) { return 1 }
   return 0
