@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "source .env.local && react-scripts start",
-    "build": "react-scripts build",
+    "build": "source .env && react-scripts build",
     "test": "react-scripts test src/tests/main",
     "seed-test-values": "react-scripts test src/tests/seed"
   },

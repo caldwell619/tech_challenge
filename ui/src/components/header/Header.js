@@ -9,8 +9,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Toggle from "components/util/Toggle";
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles(theme => ({
 	root: {
 		display: "flex"

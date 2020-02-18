@@ -65,7 +65,7 @@ const Songs = () => {
       }
     }
     initializeSongs()
-  }, [])
+  })
 
   const handleSortClickAscending = ({ programmaticCategory, categoryText }) => {
     const sortedSongsByCategory = primitiveSort(availableSongs, true, programmaticCategory)
