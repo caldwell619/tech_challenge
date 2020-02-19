@@ -30,11 +30,11 @@ The standard was to serve the songs over Lambda with Node. That is accomplished 
 
 For the result:
 ```sh
-curl https://2jo47s7exc.execute-api.us-east-1.amazonaws.com/dev/songs
+curl https://68trsee7nd.execute-api.us-east-1.amazonaws.com/dev/songs
 ```
 or
 
-[Take the browser route](https://2jo47s7exc.execute-api.us-east-1.amazonaws.com/dev/songs)
+[Take the browser route](https://68trsee7nd.execute-api.us-east-1.amazonaws.com/dev/songs)
 
 ### Extra
 
