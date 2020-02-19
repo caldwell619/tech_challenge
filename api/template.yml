@@ -5,7 +5,19 @@ Globals:
     Timeout: 30
     Environment: 
       Variables:
-        CORS_URL: https://d1ma6phx3bdsds.cloudfront.net
+        CORS_URL: !Ref CorsUrl
+
+Parameters:
+  Stage:
+    Description: Environment stage
+    Type: String
+  CorsUrl:
+    Description: URL that will be used for CORS
+    Type: String
+  S3Bucket:
+    Description: Bucket that will contain the build artifacts
+    Type: String
+
 Resources:
 ########### Lambda ###########
   LambdaLocalCorsStub:
@@ -33,7 +45,7 @@ Resources:
     Properties:
       CodeUri: src/lambdas/songs/standard
       Role: !GetAtt "iHeartChallengeRole.Arn"
-      FunctionName: get-songs
+      FunctionName: !Sub ${Stage}-get-songs
       Handler: index.handler
       Events:
         API:
@@ -48,7 +60,7 @@ Resources:
     Properties:
       CodeUri: src/lambdas/songs/extra
       Role: !GetAtt "iHeartChallengeRole.Arn"
-      FunctionName: get-songs-extra
+      FunctionName: !Sub ${Stage}-get-songs-extra
       Handler: index.handler
       Events:
         API:
@@ -63,12 +75,12 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       Name: iHeart-Challenge
-      StageName: dev
+      StageName: !Ref Stage
       DefinitionBody:
         Fn::Transform:
           Name: "AWS::Include"
           Parameters:
-            Location: s3://i-heart-challenge-build/swagger-api-template.json
+            Location: !Sub s3://${S3Bucket}/swagger-api-template.json
 
 ############### IAM ##############
   iHeartChallengeRole:
@@ -84,7 +96,7 @@ Resources:
             Service:
             - lambda.amazonaws.com
       Policies:
-      - PolicyName: iHeart-challenge-role
+      - PolicyName: !Sub ${Stage}-iHeart-challenge-role
         PolicyDocument:
           Version: '2012-10-17'
           Statement:
