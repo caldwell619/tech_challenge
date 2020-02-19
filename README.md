@@ -17,8 +17,11 @@ With that in mind, I did what was asked in the above instructions, and then anot
 ## API
 
 :white_check_mark: Node
+
 :white_check_mark: Lambda
+
 :white_check_mark: SAM ( with using the CLI )
+
 :white_check_mark: Serving static JSON file
 
 ### Standard
@@ -75,10 +78,15 @@ The `extra/` integration test, tests pagination.
 [Live Demo](https://d1ma6phx3bdsds.cloudfront.net/)
 
 :white_check_mark: React
+
 :white_check_mark: **No** table elements
+
 :white_check_mark: Scrolls vertically
+
 :white_check_mark: Scrolls horizontally
+
 :white_check_mark: Columns sort in ascending order
+
 :white_check_mark: Columns sort in descending order
 
 ### Standard
