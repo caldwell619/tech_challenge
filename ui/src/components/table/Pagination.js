@@ -30,7 +30,11 @@ const Pagination = props => {
   }
 
   const isPreviousDisabled = currentPage === 1
-  const isNextDisabled = currentPage === numberOfPages
+  const isNextDisabled = currentPage === numberOfPages || numberOfItemsPerPage === 'All'
+
+  const displayNumberOfPages = numberOfItemsPerPage === 'All'
+    ? '1'
+    : numberOfPages
 
   return (
     <Grid container justify='flex-end'>
@@ -47,7 +51,7 @@ const Pagination = props => {
             </Button>
           </Grid>
           <Grid item md={2} alignItems="center" justify="center" container>
-            {currentPage} of {numberOfPages}
+            {currentPage} of {displayNumberOfPages}
           </Grid>
           <Grid item md={2} justify="center" container>
             <Button disabled={isNextDisabled} onClick={() => alterPageNumber(singleUpArgument)}>

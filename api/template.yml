@@ -5,7 +5,7 @@ Globals:
     Timeout: 30
     Environment: 
       Variables:
-        CORS_URL: d1ma6phx3bdsds.cloudfront.net
+        CORS_URL: https://d1ma6phx3bdsds.cloudfront.net
 Resources:
 ########### Lambda ###########
   LambdaLocalCorsStub:

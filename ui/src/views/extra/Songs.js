@@ -54,14 +54,17 @@ const Songs = () => {
 
   useEffect(() => {
     const initializeSongs = async () => {
+      const numberToSendToAPI = numberOfItemsPerPage === 'All'
+        ? numberOfSongs
+        : numberOfItemsPerPage
       try {
-        await fetchSongs(currentPage, numberOfItemsPerPage)
+        await fetchSongs(currentPage, numberToSendToAPI)
       } catch(error){
         setIsLoading(false)
       }
     }
     initializeSongs()
-  }, [currentPage, numberOfItemsPerPage])
+  }, [currentPage, numberOfItemsPerPage, numberOfSongs])
 
   const handleSortClickAscending = ({ programmaticCategory, categoryText }) => {
     const sortedSongsByCategory = primitiveSort(availableSongs, true, programmaticCategory)
@@ -76,7 +79,6 @@ const Songs = () => {
   }
   return (
     <div>
-      <div>**Same table, but with searching and pagination done server side. <br/> Changing pages or number of items per pages removes current search</div>
       <LocalLoading isLoading={isLoading}/>
       <TableDisplay 
         hasSearch={true} 
@@ -104,6 +106,7 @@ const Songs = () => {
         setNumberOfItemsPerPage={updateNumberOfItemsPerPageHandler}
         currentPage={currentPage}
       />
+      <div>**Same table, but with searching and pagination done server side. <br/> Changing pages or number of items per pages removes current search</div>
     </div>
   );
 };

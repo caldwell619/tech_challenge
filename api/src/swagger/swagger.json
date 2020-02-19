@@ -75,11 +75,13 @@
 				"parameters": [
           {
             "in": "query",
-            "name": "PaginationSong",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/PaginationSong"
-            }
+            "name": "numberOfItemsPerPage",
+						"required": true  
+          },
+          {
+            "in": "query",
+            "name": "currentPage",
+						"required": true  
           }
         ],
 				"x-amazon-apigateway-integration": {
@@ -98,15 +100,5 @@
       "validateRequestParameters": true,
       "validateRequestBody": false
     }
-	},
-	"definitions": {
-    "PaginationSong": {
-      "type": "object",
-      "properties": {
-        "numberOfItemsPerPage": { "type": "integer" },
-        "currentPage": { "type": "integer" }
-      },
-      "required": ["numberOfItemsPerPage", "currentPage"]
-    }
-  }
+	}
 }
