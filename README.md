@@ -62,6 +62,14 @@ Serving 172 songs at once may be required, it may not. The second option allows 
   "numberOfSongs": 172
 }
 ```
+For the result:
+```sh
+curl https://68trsee7nd.execute-api.us-east-1.amazonaws.com/dev/songs/extra?currentPage=1&numberOfItemsPerPage=10
+```
+or
+
+[Take the browser route](https://68trsee7nd.execute-api.us-east-1.amazonaws.com/dev/songs/extra?currentPage=1&numberOfItemsPerPage=10)
+
 
 ### Tests
 
