@@ -1,11 +1,7 @@
 const songsToSend = require('./lib/songs.json')
 const { createHeaders, determineWhichSongsAreInPage } = require('./lib/helpers')
 
-let corsURL = '*'
-if(!process.env.AWS_SAM_LOCAL){
-  corsURL = process.env.CORS_URL
-} 
-
+const corsURL = process.env.CORS_URL
 const headers = createHeaders(corsURL)
 
 
