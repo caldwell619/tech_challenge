@@ -29,13 +29,75 @@ For the result:
 ```sh
 curl https://2jo47s7exc.execute-api.us-east-1.amazonaws.com/dev/songs
 ```
+or
+
+[Take the browser route](https://2jo47s7exc.execute-api.us-east-1.amazonaws.com/dev/songs)
 
 ### Extra
 
-Serving 172 songs at once may be required, it may not
+Serving 172 songs at once may be required, it may not. The second option allows pagination, and show part of the data at each time with ability to show all.
 
+#### Query String Params
+
+| Parameter | Type | Description |
+| :---: | --- | --- |
+| `numberOfItemsPerPage` | `Number` | Number of results that will be returned |
+| `currentPage` | `Number` | The starting position |
+
+#### Response
+
+```json
+{
+  "songs": [
+    {
+      ...
+    },
+    {
+      ...
+    }
+  ],
+  "numberOfSongs": 172
+}
+```
+
+### Tests
+
+There are both unit and integration tests.
+
+The unit tests are for pagination, ensuring that the correct values are returned for the 1st and 2nd page.
+
+The integration tests call both lambdas, and expect their `statusCodes` to be `200`. 
+
+The `extra/` integration test, tests pagination.
 
 ## UI
 
 [Live Demo](https://d1ma6phx3bdsds.cloudfront.net/)
+
+:white_check_mark: React
+:white_check_mark: **No** table elements
+:white_check_mark: Scrolls vertically
+:white_check_mark: Scrolls horizontally
+:white_check_mark: Columns sort in ascending order
+:white_check_mark: Columns sort in descending order
+
+### Standard
+
+[This page](https://d1ma6phx3bdsds.cloudfront.net/songs) is the straightforward implementation. A table, with no table elements, just styles. It allows for sorting in descending and ascending order, and shows the number of results.
+
+### Extras
+
+[This page](https://d1ma6phx3bdsds.cloudfront.net/extra/songs) has pagination, as well as searching. The searching runs on type, which is manageable due to the small number of items on being re-rendered.
+
+Searching and sorting can be enabled / disabled via props. They extend the functionality of the table, but are loosely coupled to not be dependent on it.
+
+Pagination is done server side, and is almost instantaneous. 
+
+### Tests
+
+The tests here are unit tests on the sorting and searching features. A small number of easily identifiable song objects act as the control group. 
+
+`npm run seed-test-values` will write to a JSON file that is the test's control file. In order to ensure the validity of the test file, it needs to be visually inspected. This is why it's a short list, and can be easily verified.
+
+`npm run test` will execute the main tests
 
