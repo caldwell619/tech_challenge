@@ -4,8 +4,6 @@ Red="\033[0;31m"       # Red
 BICyan="\033[1;96m"    # Bold Cyan
 Color_Off="\033[0m"    # Text Reset
 
-source .env.dev
-
 printf "\n\n$BICyan$( echo Running linting service.. )$Color_Off"
 printf "\n\n"
 

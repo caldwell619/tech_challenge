@@ -1,7 +1,7 @@
 #!/bin/sh
 
-source .env.local
-
+Red="\033[0;31m"       # Red
+Green="\033[0;32m"     # Green
 BICyan="\033[1;96m"    # Bold Cyan
 
 # Reset
@@ -12,3 +12,13 @@ printf "\n\n"
 aws s3 cp \
   src/swagger/swagger.json \
   s3://$S3_BUCKET/swagger-api-template.json
+
+if [ $? == 0 ]
+then
+  printf "\n\n$Green$( echo Successful deployment.. )$Color_Off"
+  printf "\n\n"
+else
+  printf "\n\n$Red$( echo Unsuccessful deployment.. )$Color_Off"
+  printf "\n\n"
+  exit 1
+fi
