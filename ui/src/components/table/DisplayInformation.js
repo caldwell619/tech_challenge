@@ -4,7 +4,8 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Search from 'components/songs/Search'
 
-const DisplayInformation = ({ header, numOfResults, hasSearch ,handleSearch, hasSorting, currentlySortedCategory }) => {
+const DisplayInformation = props => {
+  const { header, numOfResults, hasSearch ,handleSearch, hasSorting, currentlySortedCategory, currentNumberOfSorts } = props
   // allows for the table to be used without the sorting mechanism
   let sortingSection = null
   if(hasSorting){
@@ -48,6 +49,14 @@ const DisplayInformation = ({ header, numOfResults, hasSearch ,handleSearch, has
           <Typography variant='h6'>{numOfResults} Results</Typography>
         </Grid>
         {searchBar}
+        <Grid container>
+          <Grid item md={4}>
+            <Typography variant='h5' >Number Of Times Sorted</Typography>
+          </Grid>
+          <Grid item md={2}>
+            <Typography variant='h6'>{currentNumberOfSorts}</Typography>
+          </Grid>
+        </Grid>
       </Grid>
       {sortingSection}
     </Fragment>
@@ -60,6 +69,7 @@ DisplayInformation.propTypes = {
   handleSearch: PropTypes.func,
   hasSorting: PropTypes.bool,
   currentlySortedCategory: PropTypes.object,
+  currentNumberOfSorts: PropTypes.number,
 };
 
 export default DisplayInformation;
